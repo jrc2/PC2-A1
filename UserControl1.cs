@@ -16,5 +16,17 @@ namespace PC2_A1
         {
             InitializeComponent();
         }
+
+        private void GradesDataGridView_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                {
+                    this.GradeSelectionContextMenuStrip.Show(this, new Point(e.X, e.Y));
+                }
+                    break;
+            }
+        }
     }
 }

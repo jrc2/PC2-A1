@@ -28,15 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.GradesDataGridView = new System.Windows.Forms.DataGridView();
             this.Include = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.GradeSelectionContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectAllGradesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uncheckAllGradesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.GradesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.GradeSelectionContextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -48,20 +53,21 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Assessed items";
             // 
-            // dataGridView1
+            // GradesDataGridView
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.GradesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.GradesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Include,
             this.Grade,
             this.Description});
-            this.dataGridView1.Location = new System.Drawing.Point(0, 20);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(304, 234);
-            this.dataGridView1.TabIndex = 1;
+            this.GradesDataGridView.Location = new System.Drawing.Point(0, 20);
+            this.GradesDataGridView.Name = "GradesDataGridView";
+            this.GradesDataGridView.RowHeadersVisible = false;
+            this.GradesDataGridView.RowHeadersWidth = 51;
+            this.GradesDataGridView.RowTemplate.Height = 24;
+            this.GradesDataGridView.Size = new System.Drawing.Size(304, 234);
+            this.GradesDataGridView.TabIndex = 1;
+            this.GradesDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GradesDataGridView_MouseDown);
             // 
             // Include
             // 
@@ -100,18 +106,40 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Percent of overall grade:";
             // 
+            // GradeSelectionContextMenuStrip
+            // 
+            this.GradeSelectionContextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.GradeSelectionContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectAllGradesToolStripMenuItem,
+            this.uncheckAllGradesToolStripMenuItem});
+            this.GradeSelectionContextMenuStrip.Name = "GradeSelectionContextMenuStrip";
+            this.GradeSelectionContextMenuStrip.Size = new System.Drawing.Size(203, 52);
+            // 
+            // selectAllGradesToolStripMenuItem
+            // 
+            this.selectAllGradesToolStripMenuItem.Name = "selectAllGradesToolStripMenuItem";
+            this.selectAllGradesToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
+            this.selectAllGradesToolStripMenuItem.Text = "Check all grades";
+            // 
+            // uncheckAllGradesToolStripMenuItem
+            // 
+            this.uncheckAllGradesToolStripMenuItem.Name = "uncheckAllGradesToolStripMenuItem";
+            this.uncheckAllGradesToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
+            this.uncheckAllGradesToolStripMenuItem.Text = "Uncheck all grades";
+            // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.GradesDataGridView);
             this.Controls.Add(this.label1);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(672, 514);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GradesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.GradeSelectionContextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,11 +148,14 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView GradesDataGridView;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Include;
         private System.Windows.Forms.DataGridViewTextBoxColumn Grade;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ContextMenuStrip GradeSelectionContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem selectAllGradesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uncheckAllGradesToolStripMenuItem;
     }
 }
