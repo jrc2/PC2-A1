@@ -19,13 +19,29 @@ namespace PC2_A1
 
         private void GradesDataGridView_MouseDown(object sender, MouseEventArgs e)
         {
-            switch (e.Button)
+            if (e.Button == MouseButtons.Right)
             {
-                case MouseButtons.Right:
-                {
-                    this.GradeSelectionContextMenuStrip.Show(this, new Point(e.X, e.Y));
-                }
-                    break;
+                this.GradeSelectionContextMenuStrip.Show(this, new Point(e.X, e.Y));
+            }
+        }
+
+        private void CheckAllGradesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in this.GradesDataGridView.Rows)
+            {
+                var checkbox = row.Cells[0];
+                checkbox.Selected = false;
+                checkbox.Value = 1;
+            }
+        }
+
+        private void UncheckAllGradesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in this.GradesDataGridView.Rows)
+            {
+                var checkbox = row.Cells[0];
+                checkbox.Selected = false;
+                checkbox.Value = 0;
             }
         }
     }
