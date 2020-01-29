@@ -94,7 +94,7 @@
             // 
             this.numericUpDown1.Location = new System.Drawing.Point(173, 255);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(41, 22);
+            this.numericUpDown1.Size = new System.Drawing.Size(53, 22);
             this.numericUpDown1.TabIndex = 2;
             // 
             // label2
@@ -113,19 +113,19 @@
             this.selectAllGradesToolStripMenuItem,
             this.uncheckAllGradesToolStripMenuItem});
             this.GradeSelectionContextMenuStrip.Name = "GradeSelectionContextMenuStrip";
-            this.GradeSelectionContextMenuStrip.Size = new System.Drawing.Size(211, 80);
+            this.GradeSelectionContextMenuStrip.Size = new System.Drawing.Size(203, 52);
             // 
             // selectAllGradesToolStripMenuItem
             // 
             this.selectAllGradesToolStripMenuItem.Name = "selectAllGradesToolStripMenuItem";
-            this.selectAllGradesToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.selectAllGradesToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
             this.selectAllGradesToolStripMenuItem.Text = "Check all grades";
             this.selectAllGradesToolStripMenuItem.Click += new System.EventHandler(this.CheckAllGradesToolStripMenuItem_Click);
             // 
             // uncheckAllGradesToolStripMenuItem
             // 
             this.uncheckAllGradesToolStripMenuItem.Name = "uncheckAllGradesToolStripMenuItem";
-            this.uncheckAllGradesToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.uncheckAllGradesToolStripMenuItem.Size = new System.Drawing.Size(202, 24);
             this.uncheckAllGradesToolStripMenuItem.Text = "Uncheck all grades";
             this.uncheckAllGradesToolStripMenuItem.Click += new System.EventHandler(this.UncheckAllGradesToolStripMenuItem_Click);
             // 
