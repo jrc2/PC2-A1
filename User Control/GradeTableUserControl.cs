@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PC2_A1
 {
-    public partial class UserControl1: UserControl
+    public partial class GradeTableUserControl: UserControl
     {
-        public UserControl1()
+        public GradeTableUserControl()
         {
             InitializeComponent();
         }

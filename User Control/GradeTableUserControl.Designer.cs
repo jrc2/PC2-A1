@@ -1,6 +1,6 @@
 ﻿namespace PC2_A1
 {
-    partial class UserControl1
+    partial class GradeTableUserControl
     {
         /// <summary>
         /// Required designer variable.
@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.GradesDataGridView = new System.Windows.Forms.DataGridView();
-            this.Include = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.GradeSelectionContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.selectAllGradesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uncheckAllGradesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Include = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.GradesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.GradeSelectionContextMenuStrip.SuspendLayout();
@@ -68,27 +68,6 @@
             this.GradesDataGridView.Size = new System.Drawing.Size(304, 234);
             this.GradesDataGridView.TabIndex = 1;
             this.GradesDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GradesDataGridView_MouseDown);
-            // 
-            // Include
-            // 
-            this.Include.HeaderText = "Inc.";
-            this.Include.MinimumWidth = 30;
-            this.Include.Name = "Include";
-            this.Include.Width = 40;
-            // 
-            // Grade
-            // 
-            this.Grade.HeaderText = "Grade";
-            this.Grade.MinimumWidth = 6;
-            this.Grade.Name = "Grade";
-            this.Grade.Width = 60;
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.MinimumWidth = 6;
-            this.Description.Name = "Description";
-            this.Description.Width = 200;
             // 
             // numericUpDown1
             // 
@@ -129,7 +108,27 @@
             this.uncheckAllGradesToolStripMenuItem.Text = "Uncheck all grades";
             this.uncheckAllGradesToolStripMenuItem.Click += new System.EventHandler(this.UncheckAllGradesToolStripMenuItem_Click);
             // 
-            // UserControl1
+            // Include
+            // 
+            this.Include.HeaderText = "Inc.";
+            this.Include.MinimumWidth = 30;
+            this.Include.Name = "Include";
+            this.Include.Width = 40;
+            // 
+            // Grade
+            // 
+            this.Grade.HeaderText = "Grade";
+            this.Grade.MinimumWidth = 6;
+            this.Grade.Name = "Grade";
+            this.Grade.Width = 60;
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "Description";
+            this.Description.MinimumWidth = 6;
+            this.Description.Name = "Description";
+            // 
+            // GradeTableUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -137,7 +136,7 @@
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.GradesDataGridView);
             this.Controls.Add(this.label1);
-            this.Name = "UserControl1";
+            this.Name = "GradeTableUserControl";
             this.Size = new System.Drawing.Size(672, 514);
             ((System.ComponentModel.ISupportInitialize)(this.GradesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -151,13 +150,13 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView GradesDataGridView;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Include;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Grade;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ContextMenuStrip GradeSelectionContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem selectAllGradesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uncheckAllGradesToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Include;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Grade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
     }
 }
