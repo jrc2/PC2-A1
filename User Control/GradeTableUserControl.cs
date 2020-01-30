@@ -12,6 +12,9 @@ namespace PC2_A1
 {
     public partial class GradeTableUserControl: UserControl
     {
+
+        public event EventHandler DataModified; 
+
         public GradeTableUserControl()
         {
             InitializeComponent();
@@ -43,6 +46,21 @@ namespace PC2_A1
                 checkbox.Selected = false;
                 checkbox.Value = 0;
             }
+        }
+
+        protected virtual void OnDataModified()
+        {
+            this.DataModified?.Invoke(this, null);
+        }
+
+        private void GradesDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            this.OnDataModified();
+        }
+
+        private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            this.OnDataModified();
         }
     }
 }
