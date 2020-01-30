@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Grade_Calculator_by_John_Chittam
+namespace Grade_Calculator
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Grade_Calculator_by_John_Chittam
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new GradeCalculator());
         }
     }
 }

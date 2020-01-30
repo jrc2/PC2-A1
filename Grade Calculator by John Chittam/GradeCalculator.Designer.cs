@@ -1,6 +1,6 @@
 ﻿namespace Grade_Calculator_by_John_Chittam
 {
-    partial class Form1
+    partial class GradeCalculator
     {
         /// <summary>
         /// Required designer variable.

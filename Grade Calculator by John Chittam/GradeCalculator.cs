@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Grade_Calculator_by_John_Chittam
 {
-    public partial class Form1 : Form
+    public partial class GradeCalculator : Form
     {
-        public Form1()
+        public GradeCalculator()
         {
             InitializeComponent();
         }

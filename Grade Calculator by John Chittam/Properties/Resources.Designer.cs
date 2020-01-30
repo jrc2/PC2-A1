@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Grade_Calculator_by_John_Chittam.Properties
+namespace Grade_Calculator.Properties
 {
 
 
