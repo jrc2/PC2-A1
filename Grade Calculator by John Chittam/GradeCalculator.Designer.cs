@@ -31,11 +31,13 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Assignments = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.userControl11 = new PC2_A1.GradeTableUserControl();
             this.userControl12 = new PC2_A1.GradeTableUserControl();
             this.userControl13 = new PC2_A1.GradeTableUserControl();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.gradeSummaryLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Assignments.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -75,15 +77,6 @@
             this.tabPage2.Text = "Quizzes";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 21);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Categories";
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.userControl13);
@@ -94,6 +87,15 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Exams";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 17);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Categories";
             // 
             // userControl11
             // 
@@ -116,14 +118,34 @@
             this.userControl13.Size = new System.Drawing.Size(342, 286);
             this.userControl13.TabIndex = 0;
             // 
-            // Form1
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(15, 387);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(352, 261);
+            this.textBox1.TabIndex = 2;
+            // 
+            // gradeSummaryLabel
+            // 
+            this.gradeSummaryLabel.AutoSize = true;
+            this.gradeSummaryLabel.Location = new System.Drawing.Point(16, 367);
+            this.gradeSummaryLabel.Name = "gradeSummaryLabel";
+            this.gradeSummaryLabel.Size = new System.Drawing.Size(139, 21);
+            this.gradeSummaryLabel.TabIndex = 3;
+            this.gradeSummaryLabel.Text = "Grade Summary";
+            // 
+            // GradeCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(383, 645);
+            this.ClientSize = new System.Drawing.Size(393, 676);
+            this.Controls.Add(this.gradeSummaryLabel);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Name = "GradeCalculator";
             this.Text = "Grade Calculator by John Chittam";
             this.tabControl1.ResumeLayout(false);
             this.Assignments.ResumeLayout(false);
@@ -144,6 +166,8 @@
         private System.Windows.Forms.Label label1;
         private PC2_A1.GradeTableUserControl userControl12;
         private PC2_A1.GradeTableUserControl userControl13;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label gradeSummaryLabel;
     }
 }
 
