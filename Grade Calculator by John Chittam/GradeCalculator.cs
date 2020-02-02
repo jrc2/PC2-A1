@@ -51,7 +51,7 @@ namespace Grade_Calculator_by_John_Chittam
                     }
                 }
 
-                summaries += allGrades[i] != null && allGrades[i].Count > 0 ? $"{page.Text} average: {Math.Round(allGrades[i].Average(), 2)} Weight: {weights[i]}" +
+                summaries += allGrades[i] != null && allGrades[i].Count > 0 ? $"{Environment.NewLine + page.Text} average: {Math.Round(allGrades[i].Average(), 2)} Weight: {weights[i]}" +
                                                                             Environment.NewLine + categorySummary : "";
             }
 
@@ -84,7 +84,7 @@ namespace Grade_Calculator_by_John_Chittam
 
                 var overallGrade = Math.Round(weightedGrades.Sum() / weights.Sum() * 100, 2);
 
-                this.gradeSummaryTextBox.Text = $@"{errorText}Overall grade: {overallGrade + Environment.NewLine + Environment.NewLine + summaries}";
+                this.gradeSummaryTextBox.Text = $@"{errorText}Overall grade: {overallGrade + Environment.NewLine + summaries}";
             }
         }
 
