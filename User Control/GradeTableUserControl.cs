@@ -13,7 +13,10 @@ namespace PC2_A1
     public partial class GradeTableUserControl: UserControl
     {
 
-        public event EventHandler DataModified; 
+        public event EventHandler<string> DataModified; 
+
+        public DataGridViewRowCollection GradesDataGridViewRows => this.GradesDataGridView.Rows;
+        public int Weight => decimal.ToInt32(this.gradeNumericUpDown.Value);
 
         public GradeTableUserControl()
         {
@@ -48,19 +51,20 @@ namespace PC2_A1
             }
         }
 
-        protected virtual void OnDataModified()
+        protected virtual void OnDataModified(string e)
         {
-            this.DataModified?.Invoke(this, null);
+            this.DataModified?.Invoke(this, e);
         }
 
         private void GradesDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            this.OnDataModified();
+            this.OnDataModified("");
         }
 
         private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            this.OnDataModified();
+            this.OnDataModified("");
         }
+
     }
 }
