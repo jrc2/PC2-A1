@@ -58,7 +58,7 @@
             this.GradesDataGridView.RowHeadersVisible = false;
             this.GradesDataGridView.RowHeadersWidth = 51;
             this.GradesDataGridView.RowTemplate.Height = 24;
-            this.GradesDataGridView.Size = new System.Drawing.Size(304, 234);
+            this.GradesDataGridView.Size = new System.Drawing.Size(414, 234);
             this.GradesDataGridView.TabIndex = 1;
             this.GradesDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GradesDataGridView_CellEndEdit);
             this.GradesDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GradesDataGridView_MouseDown);
@@ -111,8 +111,8 @@
             this.Controls.Add(this.gradeNumericUpDown);
             this.Controls.Add(this.GradesDataGridView);
             this.Controls.Add(this.label1);
-            this.TableName = "GradeTableUserControl";
-            this.Size = new System.Drawing.Size(672, 514);
+            this.Name = "GradeTableUserControl";
+            this.Size = new System.Drawing.Size(424, 283);
             ((System.ComponentModel.ISupportInitialize)(this.GradesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gradeNumericUpDown)).EndInit();
             this.GradeSelectionContextMenuStrip.ResumeLayout(false);

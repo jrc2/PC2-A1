@@ -10,6 +10,10 @@ using System.Windows.Forms;
 
 namespace PC2_A1
 {
+    /// <summary>
+    /// The grade table user control
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class GradeTableUserControl: UserControl
     {
 

@@ -30,10 +30,6 @@ namespace Grade_Calculator_by_John_Chittam
         {
             this.InitializeComponent();
 
-            this.assignmentsGradeTable.DataModified += this.OnDataModified;
-            this.quizzesGradeTable.DataModified += this.OnDataModified;
-            this.examsGradeTable.DataModified += this.OnDataModified;
-
             this.weights = new int[this.NumCategories];
             this.allGrades = new List<double>[this.NumCategories];
 
@@ -42,7 +38,10 @@ namespace Grade_Calculator_by_John_Chittam
                 var gradeTable = (GradeTableUserControl) this.categoriesTabControl.TabPages[i].Controls[0];
                 gradeTable.TableName = this.categoriesTabControl.TabPages[i].Text;
                 gradeTable.LoadDataFromXml(Application.UserAppDataPath);
+                gradeTable.DataModified += this.OnDataModified;
             }
+
+            this.GenerateGradeSummaries();
         }
 
         #endregion
@@ -63,7 +62,7 @@ namespace Grade_Calculator_by_John_Chittam
                 summaries += this.GenerateCategorySummary(currCategory);
             }
 
-            var errorText = this.weights.Sum() == 100
+            this.gradeSummaryTextBox.Text = this.weights.Sum() == 100
                 ? string.Empty
                 : $"WARNING: Weights must add up to 100{Environment.NewLine + Environment.NewLine}";
 
@@ -71,8 +70,13 @@ namespace Grade_Calculator_by_John_Chittam
 
             var overallGrade = this.GenerateOverallGrade();
 
-            this.gradeSummaryTextBox.Text =
-                $@"{errorText}Overall grade: {overallGrade + Environment.NewLine + summaries}";
+            if (overallGrade != null)
+            {
+                this.gradeSummaryTextBox.Text +=
+                    $@"Overall grade: {overallGrade + Environment.NewLine}";
+            }
+
+            this.gradeSummaryTextBox.Text += summaries;
         }
 
         private void RemoveUnusedCategoriesFromCalculation()
@@ -87,7 +91,7 @@ namespace Grade_Calculator_by_John_Chittam
             }
         }
 
-        private double GenerateOverallGrade()
+        private double? GenerateOverallGrade()
         {
             var weightedGrades = new double[this.NumCategories];
 
@@ -99,8 +103,12 @@ namespace Grade_Calculator_by_John_Chittam
                 }
             }
 
-            var overallGrade = Math.Round(weightedGrades.Sum() / this.weights.Sum(), 2);
-            return overallGrade;
+            if (this.weights.Sum() <= 0)
+            {
+                return null;
+            }
+
+            return Math.Round(weightedGrades.Sum() / this.weights.Sum(), 2);
         }
 
         private string GenerateCategorySummary(int currCategory)

@@ -52,7 +52,7 @@
             this.categoriesTabControl.Location = new System.Drawing.Point(15, 33);
             this.categoriesTabControl.Name = "categoriesTabControl";
             this.categoriesTabControl.SelectedIndex = 0;
-            this.categoriesTabControl.Size = new System.Drawing.Size(356, 318);
+            this.categoriesTabControl.Size = new System.Drawing.Size(430, 318);
             this.categoriesTabControl.TabIndex = 0;
             // 
             // Assignments
@@ -61,7 +61,7 @@
             this.Assignments.Location = new System.Drawing.Point(4, 25);
             this.Assignments.Name = "Assignments";
             this.Assignments.Padding = new System.Windows.Forms.Padding(3);
-            this.Assignments.Size = new System.Drawing.Size(348, 289);
+            this.Assignments.Size = new System.Drawing.Size(422, 289);
             this.Assignments.TabIndex = 0;
             this.Assignments.Text = "Assignments";
             this.Assignments.UseVisualStyleBackColor = true;
@@ -72,7 +72,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(348, 289);
+            this.tabPage2.Size = new System.Drawing.Size(422, 289);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Quizzes";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -83,7 +83,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(348, 289);
+            this.tabPage3.Size = new System.Drawing.Size(422, 289);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Exams";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -103,7 +103,7 @@
             this.gradeSummaryTextBox.Location = new System.Drawing.Point(15, 387);
             this.gradeSummaryTextBox.Multiline = true;
             this.gradeSummaryTextBox.Name = "gradeSummaryTextBox";
-            this.gradeSummaryTextBox.Size = new System.Drawing.Size(352, 261);
+            this.gradeSummaryTextBox.Size = new System.Drawing.Size(419, 261);
             this.gradeSummaryTextBox.TabIndex = 2;
             // 
             // gradeSummaryLabel
@@ -118,29 +118,32 @@
             // assignmentsGradeTable
             // 
             this.assignmentsGradeTable.Location = new System.Drawing.Point(3, 3);
-            this.assignmentsGradeTable.TableName = "assignmentsGradeTable";
-            this.assignmentsGradeTable.Size = new System.Drawing.Size(339, 283);
+            this.assignmentsGradeTable.Name = "assignmentsGradeTable";
+            this.assignmentsGradeTable.Size = new System.Drawing.Size(420, 283);
             this.assignmentsGradeTable.TabIndex = 0;
+            this.assignmentsGradeTable.TableName = "assignmentsGradeTable";
             // 
             // quizzesGradeTable
             // 
             this.quizzesGradeTable.Location = new System.Drawing.Point(0, 0);
-            this.quizzesGradeTable.TableName = "quizzesGradeTable";
-            this.quizzesGradeTable.Size = new System.Drawing.Size(345, 283);
+            this.quizzesGradeTable.Name = "quizzesGradeTable";
+            this.quizzesGradeTable.Size = new System.Drawing.Size(415, 283);
             this.quizzesGradeTable.TabIndex = 0;
+            this.quizzesGradeTable.TableName = "quizzesGradeTable";
             // 
             // examsGradeTable
             // 
             this.examsGradeTable.Location = new System.Drawing.Point(6, 0);
-            this.examsGradeTable.TableName = "examsGradeTable";
-            this.examsGradeTable.Size = new System.Drawing.Size(342, 286);
+            this.examsGradeTable.Name = "examsGradeTable";
+            this.examsGradeTable.Size = new System.Drawing.Size(409, 286);
             this.examsGradeTable.TabIndex = 0;
+            this.examsGradeTable.TableName = "examsGradeTable";
             // 
             // GradeCalculator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 676);
+            this.ClientSize = new System.Drawing.Size(446, 676);
             this.Controls.Add(this.gradeSummaryLabel);
             this.Controls.Add(this.gradeSummaryTextBox);
             this.Controls.Add(this.label1);
