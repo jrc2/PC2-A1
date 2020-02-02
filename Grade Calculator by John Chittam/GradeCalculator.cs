@@ -26,6 +26,9 @@ namespace Grade_Calculator_by_John_Chittam
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GradeCalculator"/> class.
+        /// </summary>
         public GradeCalculator()
         {
             this.InitializeComponent();

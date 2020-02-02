@@ -1,5 +1,9 @@
 ﻿namespace Grade_Calculator_by_John_Chittam
 {
+    /// <summary>
+    /// The Grade Calculator designer class
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     partial class GradeCalculator
     {
         /// <summary>
@@ -162,15 +166,45 @@
 
         #endregion
 
+        /// <summary>
+        /// The categories tab control
+        /// </summary>
         private System.Windows.Forms.TabControl categoriesTabControl;
+        /// <summary>
+        /// The assignments
+        /// </summary>
         private System.Windows.Forms.TabPage Assignments;
+        /// <summary>
+        /// The assignments grade table
+        /// </summary>
         private PC2_A1.GradeTableUserControl assignmentsGradeTable;
+        /// <summary>
+        /// The tab page2
+        /// </summary>
         private System.Windows.Forms.TabPage tabPage2;
+        /// <summary>
+        /// The tab page3
+        /// </summary>
         private System.Windows.Forms.TabPage tabPage3;
+        /// <summary>
+        /// The label1
+        /// </summary>
         private System.Windows.Forms.Label label1;
+        /// <summary>
+        /// The quizzes grade table
+        /// </summary>
         private PC2_A1.GradeTableUserControl quizzesGradeTable;
+        /// <summary>
+        /// The exams grade table
+        /// </summary>
         private PC2_A1.GradeTableUserControl examsGradeTable;
+        /// <summary>
+        /// The grade summary text box
+        /// </summary>
         private System.Windows.Forms.TextBox gradeSummaryTextBox;
+        /// <summary>
+        /// The grade summary label
+        /// </summary>
         private System.Windows.Forms.Label gradeSummaryLabel;
     }
 }
