@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 using PC2_A1;
 
 namespace Grade_Calculator_by_John_Chittam
@@ -15,7 +12,7 @@ namespace Grade_Calculator_by_John_Chittam
 
         private readonly int[] weights;
         private readonly List<double>[] allGrades;
-        
+
         #endregion
 
         #region Properties
@@ -27,7 +24,7 @@ namespace Grade_Calculator_by_John_Chittam
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GradeCalculator"/> class.
+        ///     Initializes a new instance of the <see cref="GradeCalculator" /> class.
         /// </summary>
         public GradeCalculator()
         {
@@ -163,14 +160,14 @@ namespace Grade_Calculator_by_John_Chittam
             return true;
         }
 
-        #endregion
-
         private void GradeCalculator_FormClosing(object sender, FormClosingEventArgs e)
         {
             foreach (TabPage page in this.categoriesTabControl.TabPages)
             {
-                ((GradeTableUserControl)page.Controls[0]).WriteDataToXml(Application.UserAppDataPath);
+                ((GradeTableUserControl) page.Controls[0]).WriteDataToXml(Application.UserAppDataPath);
             }
         }
+
+        #endregion
     }
 }
