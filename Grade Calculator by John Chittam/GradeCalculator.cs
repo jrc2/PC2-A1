@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PC2_A1;
 
 namespace Grade_Calculator_by_John_Chittam
 {
@@ -26,26 +27,65 @@ namespace Grade_Calculator_by_John_Chittam
 
         private void OnDataModified(object sender, string e)
         {
-            string newSummaryOutput = "";
+            var numCategories = this.categoriesTabControl.TabPages.Count;
+            var weights = new int[numCategories];
+            var allGrades = new List<double>[numCategories];
+            var summaries = string.Empty;
 
-            IList<double> assignmentGrades = new List<double>();
-            string assignmentsSummary = "";
-            foreach (DataGridViewRow row in this.assignmentsGradeTable.GradesDataGridViewRows)
+            for (var i = 0; i < numCategories; i++)
             {
-                if (this.RowShouldBeIncluded(row))
+                var page = this.categoriesTabControl.TabPages[i];
+                var gradeTable = (GradeTableUserControl) page.Controls[0];
+                if (allGrades[i] == null)
                 {
-                    assignmentGrades.Add(double.Parse(row.Cells[1].Value.ToString()));
-                    assignmentsSummary += $"{row.Cells[1].Value}: {row.Cells[2].Value}" + Environment.NewLine;
+                    allGrades[i] = new List<double>();
                 }
+                weights[i] = gradeTable.Weight;
+                var categorySummary = string.Empty;
+                foreach (DataGridViewRow row in gradeTable.GradesDataGridViewRows)
+                {
+                    if (this.RowShouldBeIncluded(row))
+                    {
+                        allGrades[i].Add(double.Parse(row.Cells[1].Value.ToString()));
+                        categorySummary += $"{row.Cells[1].Value}: {row.Cells[2].Value}{Environment.NewLine}";
+                    }
+                }
+
+                summaries += allGrades[i] != null && allGrades[i].Count > 0 ? $"{page.Text} average: {Math.Round(allGrades[i].Average(), 2)} Weight: {weights[i]}" +
+                                                                            Environment.NewLine + categorySummary : "";
             }
 
-            if (assignmentGrades.Count > 0)
+            if (summaries != string.Empty)
             {
-                newSummaryOutput += $"Assignments average: {Math.Truncate(assignmentGrades.Average())} Weight: {this.assignmentsGradeTable.Weight}" +
-                                    Environment.NewLine + assignmentsSummary;
-            }
+                var errorText = weights.Sum() == 100
+                    ? string.Empty
+                    : $"WARNING: Weights must add up to 100{Environment.NewLine + Environment.NewLine}";
 
-            this.gradeSummaryTextBox.Text = newSummaryOutput;
+                for (var i = 0; i < allGrades.Length; i++)
+                {
+                    var gradesList = allGrades[i];
+                    if (gradesList == null || gradesList.Count == 0)
+                    {
+                        weights[i] = 0;
+                    }
+                }
+
+                var weightedGrades = new double[numCategories];
+
+                for (var i = 0; i < weightedGrades.Length; i++)
+                {
+                    if (allGrades[i].Count > 0)
+                    {
+                        var average = allGrades[i].Average();
+                        var weight = weights[i];
+                        weightedGrades[i] = average * weight / 100;
+                    }
+                }
+
+                var overallGrade = Math.Round(weightedGrades.Sum() / weights.Sum() * 100, 2);
+
+                this.gradeSummaryTextBox.Text = $@"{errorText}Overall grade: {overallGrade + Environment.NewLine + Environment.NewLine + summaries}";
+            }
         }
 
         private bool RowShouldBeIncluded(DataGridViewRow row)
