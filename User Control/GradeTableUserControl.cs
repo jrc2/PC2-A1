@@ -14,19 +14,19 @@ namespace PC2_A1
         #region Data members
 
         /// <summary>
-        ///     The data
+        ///     The table of all grades in category
         /// </summary>
-        private readonly DataTable data;
+        private readonly DataTable gradesTable;
 
         #endregion
 
         #region Properties
 
         /// <summary>
-        ///     Gets the grades data grid view rows.
+        ///     Gets the grades gradesTable grid view rows.
         /// </summary>
         /// <value>
-        ///     The grades data grid view rows.
+        ///     The grades gradesTable grid view rows.
         /// </value>
         public DataGridViewRowCollection GradesDataGridViewRows => this.GradesDataGridView.Rows;
 
@@ -57,11 +57,11 @@ namespace PC2_A1
         {
             this.InitializeComponent();
 
-            this.data = new DataTable();
-            this.data.Columns.Add("Include", typeof(bool));
-            this.data.Columns.Add("Grade", typeof(double));
-            this.data.Columns.Add("Description", typeof(string));
-            this.GradesDataGridView.DataSource = this.data;
+            this.gradesTable = new DataTable();
+            this.gradesTable.Columns.Add("Include", typeof(bool));
+            this.gradesTable.Columns.Add("Grade", typeof(double));
+            this.gradesTable.Columns.Add("Description", typeof(string));
+            this.GradesDataGridView.DataSource = this.gradesTable;
         }
 
         #endregion
@@ -69,7 +69,7 @@ namespace PC2_A1
         #region Methods
 
         /// <summary>
-        ///     Occurs when [data modified].
+        ///     Occurs when [gradesTable modified].
         /// </summary>
         public event EventHandler<string> DataModified;
 
@@ -77,7 +77,7 @@ namespace PC2_A1
         ///     Handles the MouseDown event of the GradesDataGridView control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event data.</param>
+        /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event gradesTable.</param>
         private void GradesDataGridView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -90,7 +90,7 @@ namespace PC2_A1
         ///     Handles the Click event of the CheckAllGradesToolStripMenuItem control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event gradesTable.</param>
         private void CheckAllGradesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in this.GradesDataGridView.Rows)
@@ -106,7 +106,7 @@ namespace PC2_A1
         ///     Handles the Click event of the UncheckAllGradesToolStripMenuItem control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event gradesTable.</param>
         private void UncheckAllGradesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in this.GradesDataGridView.Rows)
@@ -119,7 +119,7 @@ namespace PC2_A1
         }
 
         /// <summary>
-        ///     Called when [data modified].
+        ///     Called when [gradesTable modified].
         /// </summary>
         /// <param name="e">The e.</param>
         protected virtual void OnDataModified(string e)
@@ -131,7 +131,7 @@ namespace PC2_A1
         ///     Handles the CellEndEdit event of the GradesDataGridView control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs" /> instance containing the event data.</param>
+        /// <param name="e">The <see cref="DataGridViewCellEventArgs" /> instance containing the event gradesTable.</param>
         private void GradesDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             this.OnDataModified("");
@@ -141,30 +141,30 @@ namespace PC2_A1
         ///     Handles the ValueChanged event of the NumericUpDown1 control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs" /> instance containing the event gradesTable.</param>
         private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             this.OnDataModified("");
         }
 
         /// <summary>
-        ///     Writes the data to XML.
+        ///     Writes the gradesTable to XML.
         /// </summary>
         /// <param name="filePath">The file path.</param>
         public void WriteDataToXml(string filePath)
         {
-            this.data.TableName = this.TableName;
-            this.data.WriteXml($@"{filePath}\{this.TableName}.xml");
+            this.gradesTable.TableName = this.TableName;
+            this.gradesTable.WriteXml($@"{filePath}\{this.TableName}.xml");
         }
 
         /// <summary>
-        ///     Loads the data from XML.
+        ///     Loads the gradesTable from XML.
         /// </summary>
         /// <param name="filePath">The file path.</param>
         public void LoadDataFromXml(string filePath)
         {
-            this.data.TableName = this.TableName;
-            this.data.ReadXml($@"{filePath}\{this.TableName}.xml");
+            this.gradesTable.TableName = this.TableName;
+            this.gradesTable.ReadXml($@"{filePath}\{this.TableName}.xml");
         }
 
         #endregion
