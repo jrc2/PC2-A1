@@ -86,11 +86,11 @@ namespace Grade_Calculator_by_John_Chittam
             {
                 if (this.allGrades[i].Count > 0)
                 {
-                    weightedGrades[i] = this.allGrades[i].Average() * this.weights[i] / 100;
+                    weightedGrades[i] = this.allGrades[i].Average() * this.weights[i];
                 }
             }
 
-            var overallGrade = Math.Round(weightedGrades.Sum() / this.weights.Sum() * 100, 2);
+            var overallGrade = Math.Round(weightedGrades.Sum() / this.weights.Sum(), 2);
             return overallGrade;
         }
 
