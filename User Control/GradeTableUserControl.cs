@@ -125,6 +125,22 @@ namespace PC2_A1
             this.gradesTable.ReadXml($@"{filePath}\{this.TableName}.xml");
         }
 
+        private void GradesDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0 && e.RowIndex != -1)
+            {
+                this.OnDataModified(null, null);
+            }
+        }
+
+        private void GradesDataGridView_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 0 && e.RowIndex != -1)
+            {
+                this.GradesDataGridView.EndEdit();
+            }
+        }
+
         #endregion
     }
 }

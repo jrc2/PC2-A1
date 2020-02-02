@@ -62,6 +62,8 @@
             this.GradesDataGridView.TabIndex = 1;
             this.GradesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnDataModified);
             this.GradesDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnDataModified);
+            this.GradesDataGridView.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GradesDataGridView_CellMouseUp);
+            this.GradesDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.GradesDataGridView_CellValueChanged);
             this.GradesDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GradesDataGridView_MouseDown);
             // 
             // gradeNumericUpDown
