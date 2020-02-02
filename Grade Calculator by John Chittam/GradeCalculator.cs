@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PC2_A1;
 
@@ -14,78 +8,116 @@ namespace Grade_Calculator_by_John_Chittam
 {
     public partial class GradeCalculator : Form
     {
+        #region Data members
+
+        private readonly int[] weights;
+        private readonly List<double>[] allGrades;
+
+        #endregion
+
+        #region Properties
+
+        private int NumCategories => this.categoriesTabControl.TabPages.Count;
+
+        #endregion
+
+        #region Constructors
+
         public GradeCalculator()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.assignmentsGradeTable.DataModified += this.OnDataModified;
-
             this.quizzesGradeTable.DataModified += this.OnDataModified;
-
             this.examsGradeTable.DataModified += this.OnDataModified;
+
+            this.weights = new int[this.NumCategories];
+            this.allGrades = new List<double>[this.NumCategories];
         }
+
+        #endregion
+
+        #region Methods
 
         private void OnDataModified(object sender, string e)
         {
-            var numCategories = this.categoriesTabControl.TabPages.Count;
-            var weights = new int[numCategories];
-            var allGrades = new List<double>[numCategories];
+            this.GenerateGradeSummaries();
+        }
+
+        private void GenerateGradeSummaries()
+        {
+            //TODO fix weird rounding issue (overall gets closer and closer to being right as you edit things
             var summaries = string.Empty;
 
-            for (var i = 0; i < numCategories; i++)
+            for (var currCategory = 0; currCategory < this.NumCategories; currCategory++)
             {
-                var page = this.categoriesTabControl.TabPages[i];
-                var gradeTable = (GradeTableUserControl) page.Controls[0];
-                if (allGrades[i] == null)
-                {
-                    allGrades[i] = new List<double>();
-                }
-                weights[i] = gradeTable.Weight;
-                var categorySummary = string.Empty;
-                foreach (DataGridViewRow row in gradeTable.GradesDataGridViewRows)
-                {
-                    if (this.RowShouldBeIncluded(row))
-                    {
-                        allGrades[i].Add(double.Parse(row.Cells[1].Value.ToString()));
-                        categorySummary += $"{row.Cells[1].Value}: {row.Cells[2].Value}{Environment.NewLine}";
-                    }
-                }
-
-                summaries += allGrades[i] != null && allGrades[i].Count > 0 ? $"{Environment.NewLine + page.Text} average: {Math.Round(allGrades[i].Average(), 2)} Weight: {weights[i]}" +
-                                                                            Environment.NewLine + categorySummary : "";
+                summaries += this.GenerateCategorySummary(currCategory);
             }
 
-            if (summaries != string.Empty)
+            var errorText = this.weights.Sum() == 100
+                ? string.Empty
+                : $"WARNING: Weights must add up to 100{Environment.NewLine + Environment.NewLine}";
+
+            this.RemoveUnusedCategoriesFromCalculation();
+
+            var overallGrade = this.GenerateOverallGrade();
+
+            this.gradeSummaryTextBox.Text =
+                $@"{errorText}Overall grade: {overallGrade + Environment.NewLine + summaries}";
+        }
+
+        private void RemoveUnusedCategoriesFromCalculation()
+        {
+            for (var i = 0; i < this.allGrades.Length; i++)
             {
-                var errorText = weights.Sum() == 100
-                    ? string.Empty
-                    : $"WARNING: Weights must add up to 100{Environment.NewLine + Environment.NewLine}";
-
-                for (var i = 0; i < allGrades.Length; i++)
+                var gradesList = this.allGrades[i];
+                if (gradesList == null || gradesList.Count == 0)
                 {
-                    var gradesList = allGrades[i];
-                    if (gradesList == null || gradesList.Count == 0)
-                    {
-                        weights[i] = 0;
-                    }
+                    this.weights[i] = 0;
                 }
-
-                var weightedGrades = new double[numCategories];
-
-                for (var i = 0; i < weightedGrades.Length; i++)
-                {
-                    if (allGrades[i].Count > 0)
-                    {
-                        var average = allGrades[i].Average();
-                        var weight = weights[i];
-                        weightedGrades[i] = average * weight / 100;
-                    }
-                }
-
-                var overallGrade = Math.Round(weightedGrades.Sum() / weights.Sum() * 100, 2);
-
-                this.gradeSummaryTextBox.Text = $@"{errorText}Overall grade: {overallGrade + Environment.NewLine + summaries}";
             }
+        }
+
+        private double GenerateOverallGrade()
+        {
+            var weightedGrades = new double[this.NumCategories];
+
+            for (var i = 0; i < weightedGrades.Length; i++)
+            {
+                if (this.allGrades[i].Count > 0)
+                {
+                    weightedGrades[i] = this.allGrades[i].Average() * this.weights[i] / 100;
+                }
+            }
+
+            var overallGrade = Math.Round(weightedGrades.Sum() / this.weights.Sum() * 100, 2);
+            return overallGrade;
+        }
+
+        private string GenerateCategorySummary(int currCategory)
+        {
+            var page = this.categoriesTabControl.TabPages[currCategory];
+            var gradeTable = (GradeTableUserControl) page.Controls[0];
+            if (this.allGrades[currCategory] == null)
+            {
+                this.allGrades[currCategory] = new List<double>();
+            }
+
+            this.weights[currCategory] = gradeTable.Weight;
+            var categorySummary = string.Empty;
+            foreach (DataGridViewRow row in gradeTable.GradesDataGridViewRows)
+            {
+                if (this.RowShouldBeIncluded(row))
+                {
+                    this.allGrades[currCategory].Add(double.Parse(row.Cells[1].Value.ToString()));
+                    categorySummary += $"{row.Cells[1].Value}: {row.Cells[2].Value}{Environment.NewLine}";
+                }
+            }
+
+            return this.allGrades[currCategory] != null && this.allGrades[currCategory].Count > 0
+                ? $"{Environment.NewLine + page.Text} average: {Math.Round(this.allGrades[currCategory].Average(), 2)} Weight: {this.weights[currCategory]}" +
+                  Environment.NewLine + categorySummary
+                : "";
         }
 
         private bool RowShouldBeIncluded(DataGridViewRow row)
@@ -95,14 +127,14 @@ namespace Grade_Calculator_by_John_Chittam
                 return false;
             }
 
-            bool inc = false;
-            if (!(bool.TryParse(row.Cells[0].Value.ToString(), out inc)) || !inc)
+            var inc = false;
+            if (!bool.TryParse(row.Cells[0].Value.ToString(), out inc) || !inc)
             {
                 return false;
             }
 
             double grade = -1;
-            if (!(double.TryParse(row.Cells[1].Value.ToString(), out grade)) || grade < 0 || grade > 100)
+            if (!double.TryParse(row.Cells[1].Value.ToString(), out grade) || grade < 0 || grade > 100)
             {
                 return false;
             }
@@ -114,5 +146,7 @@ namespace Grade_Calculator_by_John_Chittam
 
             return true;
         }
+
+        #endregion
     }
 }
