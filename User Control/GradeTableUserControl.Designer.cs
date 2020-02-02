@@ -60,7 +60,8 @@
             this.GradesDataGridView.RowTemplate.Height = 24;
             this.GradesDataGridView.Size = new System.Drawing.Size(414, 234);
             this.GradesDataGridView.TabIndex = 1;
-            this.GradesDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.GradesDataGridView_CellEndEdit);
+            this.GradesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnDataModified);
+            this.GradesDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.OnDataModified);
             this.GradesDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GradesDataGridView_MouseDown);
             // 
             // gradeNumericUpDown
@@ -69,7 +70,7 @@
             this.gradeNumericUpDown.Name = "gradeNumericUpDown";
             this.gradeNumericUpDown.Size = new System.Drawing.Size(53, 22);
             this.gradeNumericUpDown.TabIndex = 2;
-            this.gradeNumericUpDown.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
+            this.gradeNumericUpDown.ValueChanged += new System.EventHandler(this.OnDataModified);
             // 
             // label2
             // 

@@ -13,9 +13,6 @@ namespace PC2_A1
     {
         #region Data members
 
-        /// <summary>
-        ///     The table of all grades in category
-        /// </summary>
         private readonly DataTable gradesTable;
 
         #endregion
@@ -73,11 +70,6 @@ namespace PC2_A1
         /// </summary>
         public event EventHandler<string> DataModified;
 
-        /// <summary>
-        ///     Handles the MouseDown event of the GradesDataGridView control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event gradesTable.</param>
         private void GradesDataGridView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -86,11 +78,6 @@ namespace PC2_A1
             }
         }
 
-        /// <summary>
-        ///     Handles the Click event of the CheckAllGradesToolStripMenuItem control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event gradesTable.</param>
         private void CheckAllGradesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in this.GradesDataGridView.Rows)
@@ -98,15 +85,10 @@ namespace PC2_A1
                 var checkbox = row.Cells[0];
                 checkbox.Selected = false;
                 checkbox.Value = 1;
-                this.OnDataModified("");
+                this.OnDataModified(null, null);
             }
         }
 
-        /// <summary>
-        ///     Handles the Click event of the UncheckAllGradesToolStripMenuItem control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event gradesTable.</param>
         private void UncheckAllGradesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in this.GradesDataGridView.Rows)
@@ -114,37 +96,13 @@ namespace PC2_A1
                 var checkbox = row.Cells[0];
                 checkbox.Selected = false;
                 checkbox.Value = 0;
-                this.OnDataModified("");
+                this.OnDataModified(null, null);
             }
         }
 
-        /// <summary>
-        ///     Called when [gradesTable modified].
-        /// </summary>
-        /// <param name="e">The e.</param>
-        protected virtual void OnDataModified(string e)
+        private void OnDataModified(object sender, EventArgs e)
         {
-            this.DataModified?.Invoke(this, e);
-        }
-
-        /// <summary>
-        ///     Handles the CellEndEdit event of the GradesDataGridView control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DataGridViewCellEventArgs" /> instance containing the event gradesTable.</param>
-        private void GradesDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            this.OnDataModified("");
-        }
-
-        /// <summary>
-        ///     Handles the ValueChanged event of the NumericUpDown1 control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs" /> instance containing the event gradesTable.</param>
-        private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            this.OnDataModified("");
+            this.DataModified?.Invoke(this, "");
         }
 
         /// <summary>
