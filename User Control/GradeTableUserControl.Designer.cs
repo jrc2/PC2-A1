@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.GradesDataGridView = new System.Windows.Forms.DataGridView();
             this.gradeNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -37,9 +36,6 @@
             this.GradeSelectionContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.selectAllGradesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uncheckAllGradesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Include = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.GradesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gradeNumericUpDown)).BeginInit();
             this.GradeSelectionContextMenuStrip.SuspendLayout();
@@ -57,10 +53,6 @@
             // GradesDataGridView
             // 
             this.GradesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.GradesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Include,
-            this.Grade,
-            this.Description});
             this.GradesDataGridView.Location = new System.Drawing.Point(0, 20);
             this.GradesDataGridView.Name = "GradesDataGridView";
             this.GradesDataGridView.RowHeadersVisible = false;
@@ -111,33 +103,6 @@
             this.uncheckAllGradesToolStripMenuItem.Text = "Uncheck all grades";
             this.uncheckAllGradesToolStripMenuItem.Click += new System.EventHandler(this.UncheckAllGradesToolStripMenuItem_Click);
             // 
-            // Include
-            // 
-            this.Include.FalseValue = "False";
-            this.Include.HeaderText = "Inc.";
-            this.Include.MinimumWidth = 30;
-            this.Include.Name = "Include";
-            this.Include.TrueValue = "True";
-            this.Include.Width = 40;
-            // 
-            // Grade
-            // 
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.Grade.DefaultCellStyle = dataGridViewCellStyle12;
-            this.Grade.HeaderText = "Grade";
-            this.Grade.MaxInputLength = 5;
-            this.Grade.MinimumWidth = 6;
-            this.Grade.Name = "Grade";
-            this.Grade.Width = 60;
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Description";
-            this.Description.MinimumWidth = 6;
-            this.Description.Name = "Description";
-            this.Description.Width = 125;
-            // 
             // GradeTableUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -146,7 +111,7 @@
             this.Controls.Add(this.gradeNumericUpDown);
             this.Controls.Add(this.GradesDataGridView);
             this.Controls.Add(this.label1);
-            this.Name = "GradeTableUserControl";
+            this.TableName = "GradeTableUserControl";
             this.Size = new System.Drawing.Size(672, 514);
             ((System.ComponentModel.ISupportInitialize)(this.GradesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gradeNumericUpDown)).EndInit();
@@ -165,8 +130,5 @@
         private System.Windows.Forms.ContextMenuStrip GradeSelectionContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem selectAllGradesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uncheckAllGradesToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Include;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Grade;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
     }
 }

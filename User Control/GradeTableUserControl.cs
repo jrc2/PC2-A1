@@ -13,14 +13,23 @@ namespace PC2_A1
     public partial class GradeTableUserControl: UserControl
     {
 
-        public event EventHandler<string> DataModified; 
+        public event EventHandler<string> DataModified;
 
         public DataGridViewRowCollection GradesDataGridViewRows => this.GradesDataGridView.Rows;
         public int Weight => decimal.ToInt32(this.gradeNumericUpDown.Value);
+        public string TableName { get; set; }
+
+        private DataTable data;
 
         public GradeTableUserControl()
         {
             InitializeComponent();
+
+            this.data = new DataTable();
+            this.data.Columns.Add("Include", typeof(bool));
+            this.data.Columns.Add("Grade", typeof(double));
+            this.data.Columns.Add("Description", typeof(string));
+            this.GradesDataGridView.DataSource = this.data;
         }
 
         private void GradesDataGridView_MouseDown(object sender, MouseEventArgs e)
@@ -38,6 +47,7 @@ namespace PC2_A1
                 var checkbox = row.Cells[0];
                 checkbox.Selected = false;
                 checkbox.Value = 1;
+                this.OnDataModified("");
             }
         }
 
@@ -48,6 +58,7 @@ namespace PC2_A1
                 var checkbox = row.Cells[0];
                 checkbox.Selected = false;
                 checkbox.Value = 0;
+                this.OnDataModified("");
             }
         }
 
@@ -64,6 +75,18 @@ namespace PC2_A1
         private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             this.OnDataModified("");
+        }
+
+        public void WriteDataToXml(string filePath)
+        {
+            this.data.TableName = this.TableName;
+            this.data.WriteXml($@"{filePath}\{this.TableName}.xml");
+        }
+
+        public void LoadDataFromXml(string filePath)
+        {
+            this.data.TableName = this.TableName;
+            this.data.ReadXml($@"{filePath}\{this.TableName}.xml");
         }
 
     }

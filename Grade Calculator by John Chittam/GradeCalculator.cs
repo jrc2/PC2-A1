@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 using PC2_A1;
 
 namespace Grade_Calculator_by_John_Chittam
@@ -12,7 +15,7 @@ namespace Grade_Calculator_by_John_Chittam
 
         private readonly int[] weights;
         private readonly List<double>[] allGrades;
-
+        
         #endregion
 
         #region Properties
@@ -33,6 +36,13 @@ namespace Grade_Calculator_by_John_Chittam
 
             this.weights = new int[this.NumCategories];
             this.allGrades = new List<double>[this.NumCategories];
+
+            for (var i = 0; i < this.categoriesTabControl.TabPages.Count; i++)
+            {
+                var gradeTable = (GradeTableUserControl) this.categoriesTabControl.TabPages[i].Controls[0];
+                gradeTable.TableName = this.categoriesTabControl.TabPages[i].Text;
+                gradeTable.LoadDataFromXml(Application.UserAppDataPath);
+            }
         }
 
         #endregion
@@ -46,7 +56,6 @@ namespace Grade_Calculator_by_John_Chittam
 
         private void GenerateGradeSummaries()
         {
-            //TODO fix weird rounding issue (overall gets closer and closer to being right as you edit things
             var summaries = string.Empty;
 
             for (var currCategory = 0; currCategory < this.NumCategories; currCategory++)
@@ -98,11 +107,7 @@ namespace Grade_Calculator_by_John_Chittam
         {
             var page = this.categoriesTabControl.TabPages[currCategory];
             var gradeTable = (GradeTableUserControl) page.Controls[0];
-            if (this.allGrades[currCategory] == null)
-            {
-                this.allGrades[currCategory] = new List<double>();
-            }
-
+            this.allGrades[currCategory] = new List<double>();
             this.weights[currCategory] = gradeTable.Weight;
             var categorySummary = string.Empty;
             foreach (DataGridViewRow row in gradeTable.GradesDataGridViewRows)
@@ -148,5 +153,13 @@ namespace Grade_Calculator_by_John_Chittam
         }
 
         #endregion
+
+        private void GradeCalculator_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            foreach (TabPage page in this.categoriesTabControl.TabPages)
+            {
+                ((GradeTableUserControl)page.Controls[0]).WriteDataToXml(Application.UserAppDataPath);
+            }
+        }
     }
 }

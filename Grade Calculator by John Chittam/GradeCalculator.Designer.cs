@@ -118,21 +118,21 @@
             // assignmentsGradeTable
             // 
             this.assignmentsGradeTable.Location = new System.Drawing.Point(3, 3);
-            this.assignmentsGradeTable.Name = "assignmentsGradeTable";
+            this.assignmentsGradeTable.TableName = "assignmentsGradeTable";
             this.assignmentsGradeTable.Size = new System.Drawing.Size(339, 283);
             this.assignmentsGradeTable.TabIndex = 0;
             // 
             // quizzesGradeTable
             // 
             this.quizzesGradeTable.Location = new System.Drawing.Point(0, 0);
-            this.quizzesGradeTable.Name = "quizzesGradeTable";
+            this.quizzesGradeTable.TableName = "quizzesGradeTable";
             this.quizzesGradeTable.Size = new System.Drawing.Size(345, 283);
             this.quizzesGradeTable.TabIndex = 0;
             // 
             // examsGradeTable
             // 
             this.examsGradeTable.Location = new System.Drawing.Point(6, 0);
-            this.examsGradeTable.Name = "examsGradeTable";
+            this.examsGradeTable.TableName = "examsGradeTable";
             this.examsGradeTable.Size = new System.Drawing.Size(342, 286);
             this.examsGradeTable.TabIndex = 0;
             // 
@@ -147,6 +147,7 @@
             this.Controls.Add(this.categoriesTabControl);
             this.Name = "GradeCalculator";
             this.Text = "Grade Calculator by John Chittam";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GradeCalculator_FormClosing);
             this.categoriesTabControl.ResumeLayout(false);
             this.Assignments.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
