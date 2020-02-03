@@ -1,4 +1,4 @@
-﻿namespace Grade_Calculator_by_John_Chittam
+﻿namespace Grade_Calculator
 {
     /// <summary>
     /// The Grade Calculator designer class
@@ -39,9 +39,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gradeSummaryTextBox = new System.Windows.Forms.TextBox();
             this.gradeSummaryLabel = new System.Windows.Forms.Label();
-            this.assignmentsGradeTable = new PC2_A1.GradeTableUserControl();
-            this.quizzesGradeTable = new PC2_A1.GradeTableUserControl();
-            this.examsGradeTable = new PC2_A1.GradeTableUserControl();
+            this.assignmentsGradeTable = new Grade_Table_User_Control.GradeTableUserControl();
+            this.quizzesGradeTable = new Grade_Table_User_Control.GradeTableUserControl();
+            this.examsGradeTable = new Grade_Table_User_Control.GradeTableUserControl();
             this.categoriesTabControl.SuspendLayout();
             this.Assignments.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -177,7 +177,7 @@
         /// <summary>
         /// The assignments grade table
         /// </summary>
-        private PC2_A1.GradeTableUserControl assignmentsGradeTable;
+        private Grade_Table_User_Control.GradeTableUserControl assignmentsGradeTable;
         /// <summary>
         /// The tab page2
         /// </summary>
@@ -193,11 +193,11 @@
         /// <summary>
         /// The quizzes grade table
         /// </summary>
-        private PC2_A1.GradeTableUserControl quizzesGradeTable;
+        private Grade_Table_User_Control.GradeTableUserControl quizzesGradeTable;
         /// <summary>
         /// The exams grade table
         /// </summary>
-        private PC2_A1.GradeTableUserControl examsGradeTable;
+        private Grade_Table_User_Control.GradeTableUserControl examsGradeTable;
         /// <summary>
         /// The grade summary text box
         /// </summary>

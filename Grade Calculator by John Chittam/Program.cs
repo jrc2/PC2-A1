@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Grade_Calculator_by_John_Chittam;
+using Grade_Calculator;
 
 namespace Grade_Calculator
 {

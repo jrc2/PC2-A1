@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace PC2_A1
+namespace Grade_Table_User_Control
 {
     /// <summary>
     ///     The grade table user control

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using PC2_A1;
+using Grade_Table_User_Control;
 
-namespace Grade_Calculator_by_John_Chittam
+namespace Grade_Calculator
 {
     public partial class GradeCalculator : Form
     {

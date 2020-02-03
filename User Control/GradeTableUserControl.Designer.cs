@@ -1,4 +1,4 @@
-﻿namespace PC2_A1
+﻿namespace Grade_Table_User_Control
 {
     partial class GradeTableUserControl
     {
