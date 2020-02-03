@@ -142,18 +142,16 @@ namespace PC2_A1
         public void LoadDataFromXml(string filePath)
         {
             this.GradesTable.TableName = this.TableName;
-            try
+            var fullFilePath = $"{filePath}\\{this.TableName}.xml";
+            if (File.Exists(fullFilePath))
             {
-                using (var reader = XmlReader.Create($@"{filePath}\{this.TableName}.xml"))
+                using (var reader = XmlReader.Create(fullFilePath))
                 {
                     reader.ReadStartElement(this.TableName);
                     this.Weight = int.Parse(reader.ReadElementString("Weight"));
                     this.GradesTable.ReadXml(reader);
                 }
-            }
-            catch
-            {
-                return;
+
             }
         }
 
