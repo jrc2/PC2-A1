@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryData.cs" />
     <Compile Include="GradeCalculator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,7 +55,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serializer.cs" />
     <EmbeddedResource Include="GradeCalculator.resx">
       <DependentUpon>GradeCalculator.cs</DependentUpon>
     </EmbeddedResource>
