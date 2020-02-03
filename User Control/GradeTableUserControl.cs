@@ -127,7 +127,7 @@ namespace PC2_A1
         {
             this.GradesTable.TableName = this.TableName;
 
-            using (var writer = XmlWriter.Create($@"{filePath}\{this.TableName}.xml"))
+            using (var writer = XmlWriter.Create($"{filePath}\\{this.TableName}.xml"))
             {
                 writer.WriteStartElement(this.TableName);
                 writer.WriteElementString("Weight", this.Weight.ToString());
