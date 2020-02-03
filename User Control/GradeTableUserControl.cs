@@ -126,9 +126,6 @@ namespace PC2_A1
         public void WriteDataToXml(string filePath)
         {
             this.GradesTable.TableName = this.TableName;
-//            this.GradesTable.WriteXml($@"{filePath}\{this.TableName}.xml");
-            //            var data = new CategoryData(this.GradesTable, this.Weight);
-            //            Serializer.Serialize(data, this.TableName + "2");
 
             using (var writer = XmlWriter.Create($@"{filePath}\{this.TableName}.xml"))
             {
@@ -158,13 +155,6 @@ namespace PC2_A1
             {
                 return;
             }
-            
-//            var data = Serializer.Deserialize(this.TableName + "2");
-//            if (data != null)
-//            {
-//                this.Weight = data.Weight;
-//                this.GradesTable = data.Grades;
-//            }
         }
 
         private void GradesDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
