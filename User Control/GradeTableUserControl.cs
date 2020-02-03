@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
-using System.Xml.Serialization;
 
 namespace Grade_Table_User_Control
 {
@@ -17,15 +15,17 @@ namespace Grade_Table_User_Control
     {
         #region Data members
 
+        private readonly DataTable gradesTable;
+
         #endregion
 
         #region Properties
 
         /// <summary>
-        ///     Gets the grades GradesTable grid view rows.
+        ///     Gets the grades gradesTable grid view rows.
         /// </summary>
         /// <value>
-        ///     The grades GradesTable grid view rows.
+        ///     The grades gradesTable grid view rows.
         /// </value>
         public DataGridViewRowCollection GradesDataGridViewRows => this.GradesDataGridView.Rows;
 
@@ -38,16 +38,8 @@ namespace Grade_Table_User_Control
         public int Weight
         {
             get => decimal.ToInt32(this.gradeNumericUpDown.Value);
-            set => this.gradeNumericUpDown.Value = value;
+            private set => this.gradeNumericUpDown.Value = value;
         }
-
-        /// <summary>
-        /// Gets or sets the grades table.
-        /// </summary>
-        /// <value>
-        /// The grades table.
-        /// </value>
-        public DataTable GradesTable { get; set; }
 
         /// <summary>
         ///     Gets or sets the name of the table.
@@ -68,11 +60,11 @@ namespace Grade_Table_User_Control
         {
             this.InitializeComponent();
 
-            this.GradesTable = new DataTable();
-            this.GradesTable.Columns.Add("Include", typeof(bool));
-            this.GradesTable.Columns.Add("Grade", typeof(double));
-            this.GradesTable.Columns.Add("Description", typeof(string));
-            this.GradesDataGridView.DataSource = this.GradesTable;
+            this.gradesTable = new DataTable();
+            this.gradesTable.Columns.Add("Include", typeof(bool));
+            this.gradesTable.Columns.Add("Grade", typeof(double));
+            this.gradesTable.Columns.Add("Description", typeof(string));
+            this.GradesDataGridView.DataSource = this.gradesTable;
         }
 
         #endregion
@@ -80,7 +72,7 @@ namespace Grade_Table_User_Control
         #region Methods
 
         /// <summary>
-        ///     Occurs when [GradesTable modified].
+        ///     Occurs when [gradesTable modified].
         /// </summary>
         public event EventHandler<string> DataModified;
 
@@ -120,28 +112,28 @@ namespace Grade_Table_User_Control
         }
 
         /// <summary>
-        ///     Writes the GradesTable to XML.
+        ///     Writes the gradesTable to XML.
         /// </summary>
         /// <param name="filePath">The file path.</param>
         public void WriteDataToXml(string filePath)
         {
-            this.GradesTable.TableName = this.TableName;
+            this.gradesTable.TableName = this.TableName;
 
             using (var writer = XmlWriter.Create($"{filePath}\\{this.TableName}.xml"))
             {
                 writer.WriteStartElement(this.TableName);
                 writer.WriteElementString("Weight", this.Weight.ToString());
-                this.GradesTable.WriteXml(writer);
+                this.gradesTable.WriteXml(writer);
             }
         }
 
         /// <summary>
-        ///     Loads the GradesTable from XML.
+        ///     Loads the gradesTable from XML.
         /// </summary>
         /// <param name="filePath">The file path.</param>
         public void LoadDataFromXml(string filePath)
         {
-            this.GradesTable.TableName = this.TableName;
+            this.gradesTable.TableName = this.TableName;
             var fullFilePath = $"{filePath}\\{this.TableName}.xml";
             if (File.Exists(fullFilePath))
             {
@@ -149,9 +141,8 @@ namespace Grade_Table_User_Control
                 {
                     reader.ReadStartElement(this.TableName);
                     this.Weight = int.Parse(reader.ReadElementString("Weight"));
-                    this.GradesTable.ReadXml(reader);
+                    this.gradesTable.ReadXml(reader);
                 }
-
             }
         }
 
