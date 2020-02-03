@@ -38,6 +38,7 @@ namespace Grade_Calculator_by_John_Chittam
                 var gradeTable = (GradeTableUserControl) this.categoriesTabControl.TabPages[i].Controls[0];
                 gradeTable.TableName = this.categoriesTabControl.TabPages[i].Text;
                 gradeTable.LoadDataFromXml(Application.UserAppDataPath);
+//                this.LoadSavedGrades();
                 gradeTable.DataModified += this.OnDataModified;
             }
 
@@ -166,7 +167,33 @@ namespace Grade_Calculator_by_John_Chittam
             {
                 ((GradeTableUserControl) page.Controls[0]).WriteDataToXml(Application.UserAppDataPath);
             }
+//            List<CategoryData> allCategoryData = new List<CategoryData>();
+//            foreach (TabPage page in this.categoriesTabControl.TabPages)
+//            {
+//                var gradeTable = ((GradeTableUserControl) page.Controls[0]);
+//                gradeTable.GradesTable.TableName = page.Text;
+//                var categoryData = new CategoryData(gradeTable.GradesTable, gradeTable.Weight);
+//                allCategoryData.Add(categoryData);
+//            }
+//
+//            Serializer.Serialize(allCategoryData, "test2");
         }
+
+//        private void LoadSavedGrades()
+//        {
+//            var allCategoryData = Serializer.Deserialize("test2");
+//
+//            if (allCategoryData != null)
+//            {
+//                for (var i = 0; i < allCategoryData.Count; i++)
+//                {
+//                    var categoryData = allCategoryData[i];
+//                    var gradeTableUserControl = (GradeTableUserControl)this.categoriesTabControl.TabPages[i].Controls[0];
+//                    gradeTableUserControl.GradesTable = categoryData.Grades;
+//                    gradeTableUserControl.Weight = categoryData.Weight;
+//                }
+//            }
+//        }
 
         #endregion
     }

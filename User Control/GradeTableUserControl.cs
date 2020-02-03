@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace PC2_A1
 {
@@ -13,17 +17,15 @@ namespace PC2_A1
     {
         #region Data members
 
-        private readonly DataTable gradesTable;
-
         #endregion
 
         #region Properties
 
         /// <summary>
-        ///     Gets the grades gradesTable grid view rows.
+        ///     Gets the grades GradesTable grid view rows.
         /// </summary>
         /// <value>
-        ///     The grades gradesTable grid view rows.
+        ///     The grades GradesTable grid view rows.
         /// </value>
         public DataGridViewRowCollection GradesDataGridViewRows => this.GradesDataGridView.Rows;
 
@@ -33,7 +35,19 @@ namespace PC2_A1
         /// <value>
         ///     The weight.
         /// </value>
-        public int Weight => decimal.ToInt32(this.gradeNumericUpDown.Value);
+        public int Weight
+        {
+            get => decimal.ToInt32(this.gradeNumericUpDown.Value);
+            set => this.gradeNumericUpDown.Value = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the grades table.
+        /// </summary>
+        /// <value>
+        /// The grades table.
+        /// </value>
+        public DataTable GradesTable { get; set; }
 
         /// <summary>
         ///     Gets or sets the name of the table.
@@ -54,11 +68,11 @@ namespace PC2_A1
         {
             this.InitializeComponent();
 
-            this.gradesTable = new DataTable();
-            this.gradesTable.Columns.Add("Include", typeof(bool));
-            this.gradesTable.Columns.Add("Grade", typeof(double));
-            this.gradesTable.Columns.Add("Description", typeof(string));
-            this.GradesDataGridView.DataSource = this.gradesTable;
+            this.GradesTable = new DataTable();
+            this.GradesTable.Columns.Add("Include", typeof(bool));
+            this.GradesTable.Columns.Add("Grade", typeof(double));
+            this.GradesTable.Columns.Add("Description", typeof(string));
+            this.GradesDataGridView.DataSource = this.GradesTable;
         }
 
         #endregion
@@ -66,7 +80,7 @@ namespace PC2_A1
         #region Methods
 
         /// <summary>
-        ///     Occurs when [gradesTable modified].
+        ///     Occurs when [GradesTable modified].
         /// </summary>
         public event EventHandler<string> DataModified;
 
@@ -106,23 +120,51 @@ namespace PC2_A1
         }
 
         /// <summary>
-        ///     Writes the gradesTable to XML.
+        ///     Writes the GradesTable to XML.
         /// </summary>
         /// <param name="filePath">The file path.</param>
         public void WriteDataToXml(string filePath)
         {
-            this.gradesTable.TableName = this.TableName;
-            this.gradesTable.WriteXml($@"{filePath}\{this.TableName}.xml");
+            this.GradesTable.TableName = this.TableName;
+//            this.GradesTable.WriteXml($@"{filePath}\{this.TableName}.xml");
+            //            var data = new CategoryData(this.GradesTable, this.Weight);
+            //            Serializer.Serialize(data, this.TableName + "2");
+
+            using (var writer = XmlWriter.Create($@"{filePath}\{this.TableName}.xml"))
+            {
+                writer.WriteStartElement(this.TableName);
+                writer.WriteElementString("Weight", this.Weight.ToString());
+                this.GradesTable.WriteXml(writer);
+            }
         }
 
         /// <summary>
-        ///     Loads the gradesTable from XML.
+        ///     Loads the GradesTable from XML.
         /// </summary>
         /// <param name="filePath">The file path.</param>
         public void LoadDataFromXml(string filePath)
         {
-            this.gradesTable.TableName = this.TableName;
-            this.gradesTable.ReadXml($@"{filePath}\{this.TableName}.xml");
+            this.GradesTable.TableName = this.TableName;
+            try
+            {
+                using (var reader = XmlReader.Create($@"{filePath}\{this.TableName}.xml"))
+                {
+                    reader.ReadStartElement(this.TableName);
+                    this.Weight = int.Parse(reader.ReadElementString("Weight"));
+                    this.GradesTable.ReadXml(reader);
+                }
+            }
+            catch
+            {
+                return;
+            }
+            
+//            var data = Serializer.Deserialize(this.TableName + "2");
+//            if (data != null)
+//            {
+//                this.Weight = data.Weight;
+//                this.GradesTable = data.Grades;
+//            }
         }
 
         private void GradesDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
